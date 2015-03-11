@@ -11,7 +11,7 @@ object HmrcBuild extends Build {
   import play.PlayImport._
 
   val nameApp = "play-health-fork"
-  val versionApp = "0.1.2"
+  val versionApp = "0.1.3"
 
   val appDependencies = Seq(
     "com.typesafe.play" %% "play" % PlayVersion.current,
@@ -38,23 +38,8 @@ object HmrcBuild extends Build {
       crossScalaVersions := Seq("2.11.5", "2.10.4")
     )
     .settings(SbtBuildInfo(): _*)
-    .settings(BintraySettings(Some("hmrc")): _*)
     .settings(BuildDescriptionSettings(): _*)
 
-}
-
-
-object BintraySettings {
-
-  import bintray.Plugin._
-  import bintray.Keys._
-
-  def apply(org : Option[String]) = bintrayPublishSettings ++ Seq (
-    publishMavenStyle := true,
-    repository in bintray := "releases-maven",
-    bintrayOrganization in bintray := org,
-    licenses += "Apache-2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0")
-  )
 }
 
 object BuildDescriptionSettings {
